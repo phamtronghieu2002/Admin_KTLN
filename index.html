@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="" />
+    <link rel="stylesheet" href="/assets/css/minimap.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
+    <!-- <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeBmJ2801jKYDumo5T9aMpVb6J6eIqAcM"
+      async
+      defer
+    ></script> -->
+    <title>Ielts App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root" value=123>
+    </div>
+    <script  type="module" src="/src/main.tsx"></script>
+  </body>
+  <script>
+    
+    const handle = (x)=>{
+      x?.();
+    }
+    handle(); // Không gây lỗi, chỉ trả về undefined
+    
+    const div = document.getElementById('root');
+    console.log(div.getAttribute('value'));
+  </script>
+</html>
