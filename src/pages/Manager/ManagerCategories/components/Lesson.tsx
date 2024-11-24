@@ -118,7 +118,7 @@ const Lesson: FC<ContentProps> = ({ category_id, type_category }) => {
 
   useEffect(() => {
     fetchLessons(storeCategories?.keyword || "")
-  }, [storeCategories?.refresh, storeCategories?.keyword])
+  }, [storeCategories?.refresh, storeCategories?.keyword,category_id])
 
   const handleReload = () => {
     fetchLessons("")
