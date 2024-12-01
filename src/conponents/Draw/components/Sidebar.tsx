@@ -47,13 +47,23 @@ const Sidebar: FC<SidebarProps> = ({
       const questions = res.data?.questions?.[0]?.questions || []
       setLoadingQuestion(false)
       setQuestions(questions)
+      console.log('====================================');
+      console.log("questions >>>", res.data?.questions?.[0]);
+      console.log('====================================');
       dispath({
         type: "SET_QUESTION",
         payload: res.data?.questions?.[0],
       })
 
       if (isFirst) {
+        console.log('====================================');
+        console.log("có lọt vào first >>>>", questions?.[0]?.question_type);
+        console.log('====================================');
         dispath({ type: "SET_QUESTION_SELECT", payload: questions?.[0] })
+        dispath({
+          type: "SET_QUESTION_TYPE",
+          payload: questions?.[0]?.question_type,
+        })
       }
     } catch (error) {
       console.log("====================================")

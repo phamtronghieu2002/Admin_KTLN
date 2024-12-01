@@ -46,7 +46,7 @@ const BlankItem: FC<BlankItemProps> = ({
 
   option_id,
 }) => {
-  _log("data trong item nha mấy ní !!", data)
+
   return (
     <div>
       <div className="heading flex justify-between mb-2">

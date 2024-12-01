@@ -41,7 +41,7 @@ const MainContent: FC<MainContentProps> = ({
 
   const sound_voc = data_voc?.sound_voc || ""
   const [explain, setExplain] = useState<string>("")
-  _log("question_select >>>>>>>>>", question_select)
+  _log("drawStore >>>>>>>>>", drawStore)
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
@@ -72,6 +72,9 @@ const MainContent: FC<MainContentProps> = ({
     try {
       const question_id = question?._id
       const question_type = drawStore?.question_type
+      console.log('====================================');
+      console.log("question_type >>>>>", question_type);
+      console.log('====================================');
       const sub_question_id = question_select
         ? question_select?.question_id
         : _app?.randomId()
@@ -188,7 +191,7 @@ const MainContent: FC<MainContentProps> = ({
                   data={question_select?.options}
                   onSubmit={handleSaveQuestion}
                 />
-              ) : question_type === _questionType?.choice ? (
+              ) : question_type === _questionType?.choice || !question_type  ? (
                 <ChoiceQuestion
                   data={question_select?.options}
                   onSubmit={handleSaveQuestion}
