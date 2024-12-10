@@ -28,7 +28,7 @@ interface ModalquestionProps {
 
 export const question_type_models = [
   {
-    title: "Trắc nghiệm - nhiều đáp án",
+    title: "Trắc nghiệm",
     desc: "Cho phép tạo câu hỏi trắc nghiệm có nhiều câu trả lời và chỉ được chọn 1 đáp án đúng",
     type: _questionType?.choice,
     icon: "FaListCheck",
@@ -55,14 +55,22 @@ const ModalForm: FC<{
   refresh?: any
 }> = ({ action, type, data, lesson_id, refresh, test_id }) => {
   const { drawStore, dispath } = useContext<any>(context)
-  const [typeQuestion, setTypeQuestion] = React.useState<any>(null)
+  const [typeQuestion, setTypeQuestion] = React.useState<any>(
+    drawStore?.question_type ?? null,
+  )
 
+  console.log("====================================")
+  console.log("drawStore >>>>>>", drawStore)
+  console.log("====================================")
   const handleSelectTypeQuestion = (data: any) => {
     setTypeQuestion(data)
   }
 
   const handleConfirm = () => {
     const question_type = typeQuestion?.type
+    console.log("====================================")
+    console.log("question_type ne nhaaaaaaaaaaaaa>>>>>>", question_type)
+    console.log("====================================")
     dispath({
       type: "SET_QUESTION_TYPE",
       payload: question_type,
@@ -83,6 +91,13 @@ const ModalForm: FC<{
   }
 
   useEffect(() => {
+    if (drawStore?.question_type) {
+    
+      setTypeQuestion(question_type_models.find((item) => item.type === drawStore?.question_type))
+
+    
+      return
+    }
     setTypeQuestion(question_type_models[0])
   }, [])
   return (

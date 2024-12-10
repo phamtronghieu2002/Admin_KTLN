@@ -77,10 +77,12 @@ const DrawProvider: React.FC<DrawProviderProps> = ({ children }) => {
         }))
         break
       case "SET_QUESTION_TYPE":
-        setDrawStore((prev: any) => ({
-          ...prev,
-          question_type: action?.payload,
-        }))
+            if (action?.payload) {
+              setDrawStore((prev: any) => ({
+                ...prev,
+                question_type: action?.payload,
+              }))
+            }
         break
       case "SET_CONFIRM_CREATE_TYPE_QUESTION":
      

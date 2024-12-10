@@ -71,7 +71,7 @@ const QuestionEditor: React.FC<{
             answers.forEach((answer, index) => {
               filledText = filledText.replace(
                 `[FILL][${answer.is_correct}][${answer.explain}]`,
-                `(${index + 1})[___]`,
+                `(${index + 1}) ..............`,
               )
             })
         
