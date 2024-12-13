@@ -5,6 +5,7 @@ import type { UploadProps } from "antd"
 import axios from "..//..//..//services/axiosInstance"
 import { _app } from "../../../utils/_app"
 import { MaskLoader } from "../../Loader"
+import { log } from "console"
 
 interface UploadAudioProps {
   setUrl: (url: string) => void
@@ -17,7 +18,7 @@ const UploadAudio: FC<UploadAudioProps> = ({ setUrl, initialUrl }) => {
     initialUrl ? initialUrl : null,
   )
   const [loading, setLoading] = useState<boolean>(false)
-
+  const [keyRefresh, setKeyRefresh] = useState<number>(0)
   const beforeUpload = (file: File) => {
     const isAudio = file.type.startsWith("audio/")
     if (!isAudio) {
@@ -27,11 +28,11 @@ const UploadAudio: FC<UploadAudioProps> = ({ setUrl, initialUrl }) => {
 
     // Preview the audio file
     const audioURL = URL.createObjectURL(file)
-    console.log("chay vo day de set")
 
     setAudioUrl(audioURL)
     setAudioFile(file)
-
+    setKeyRefresh(Math.random())
+    
     return false // Prevent automatic upload by Ant Design
   }
 
@@ -40,8 +41,9 @@ const UploadAudio: FC<UploadAudioProps> = ({ setUrl, initialUrl }) => {
       handleUpload()
     }
   }, [audioUrl])
+
   const handleUpload = async () => {
-    if (initialUrl) return
+    if (initialUrl && !keyRefresh) return
     if (!audioFile) {
       message.error("No audio file selected!")
       return
@@ -59,6 +61,7 @@ const UploadAudio: FC<UploadAudioProps> = ({ setUrl, initialUrl }) => {
       })
 
       setLoading(false)
+
       setUrl(response?.url)
 
       message.success("Upload successful!")

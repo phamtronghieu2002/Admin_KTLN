@@ -143,7 +143,7 @@ const ModalForm: FC<{
 
   const handleSetFormData = (name: string, value: string) => {
 
-    console.log("====================================")
+
     setFormData({
       ...formData,
       [name]: value,
